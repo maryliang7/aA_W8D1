@@ -1,0 +1,39 @@
+<h1>
+<a href="<%= @post.url %>"><%= @post.title %></a> 
+by <%= @post.author.username %>
+</h1>
+
+<p>
+Content:
+<br>
+<%= @post.content %>
+</p>
+
+<br>
+<button>Upvote</button>
+<button>Downvote</button>
+<br>
+
+<h3>Subs</h3>
+<ul>
+<% @post.subs.each do |sub| %>
+  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+<% end %>
+</ul>
+
+
+<h3>Comments</h3>
+<% parent_comments = @post.comments_by_parent_id %>
+<ul>
+  <% parent_comments[nil].each do |comment| %>
+    <%= render '/comments/comment', comment: comment, parent_comments: parent_comments  %>
+  <% end %>
+</ul>
+
+<a href="<%= new_post_comment_url(@post) %>">Comment on this post!</a>
+
+
+<br>
+<br>
+
+<a href="<%= edit_post_url(@post) %>">Edit</a>

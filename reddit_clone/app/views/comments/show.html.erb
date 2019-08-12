@@ -1,0 +1,18 @@
+<button>Upvote</button>
+<button>Downvote</button>
+<br>
+<h4>Reply to this comment:</h4>
+<br>
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+  <label for="Body">Body</label>
+  <br>
+  <textarea name="comment[content]" id="Body" cols="30" rows="10"></textarea>
+  <br>
+  <input type="submit" value="Submit">
+
+
+</form>
